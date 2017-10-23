@@ -1,24 +1,17 @@
 package com.example.jdbcdemo.domain;
 
-public class Person {
+public class Flower {
 	
-	private long id;
-	
+	private int id;	
 	private String name;
-	private int yob;
+	private double priceNetto;
+	public int vat;
+	public String type;
 	
-	public Person() {
-	}
-	
-	public Person(String name, int yob) {
-		super();
-		this.name = name;
-		this.yob = yob;
-	}
-	public long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -27,11 +20,31 @@ public class Person {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getYob() {
-		return yob;
+	public double getPriceNetto() {
+		return priceNetto;
 	}
-	public void setYob(int yob) {
-		this.yob = yob;
+	public void setPriceNetto(double priceNetto) {
+		this.priceNetto = priceNetto;
+	}
+	public int getVat() {
+		return vat;
+	}
+	public void setVat(int vat) {
+		this.vat = vat;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
+	public Flower(String name, double price, int vat, String type){
+		this.name = name;
+		this.priceNetto = price;
+		this.vat = vat;
+		this.type = type;
+	};
+	
+	public Flower(){};
 }
