@@ -35,7 +35,7 @@ public class FlowerManagerTest {
 		Flower flowerRetrieved = flowers.get(0);
 		
 		assertEquals(NAME_1, flowerRetrieved.getName());
-		assertEquals(PRICE_1, flowerRetrieved.getPriceNetto(), 0.0001);
+		assertEquals(PRICE_1, flowerRetrieved.getPriceNetto(), 5);
 		assertEquals(VAT_1, flowerRetrieved.getVat());
 		assertEquals(TYPE_1, flowerRetrieved.getType());
 		
