@@ -2,6 +2,7 @@ package com.example.jdbcdemo.service;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.matchers.JUnitMatchers.either;
 
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class FlowerManagerTest {
 	Flower flower4 = new Flower(NAME_4,PRICE_4,VAT_4,TYPE_4);
 
 
-	//@Test
+	@Test
 	public void checkSearching(){
 		Flower flowerFromSearch = flowerManager.searchFlower(NAME_1);
 
@@ -52,7 +53,7 @@ public class FlowerManagerTest {
 
 	}
 
-	//@Test
+	@Test
 	public void checkUpdating(){
 
 		assertEquals(1,flowerManager.updateFlower(flower1));
