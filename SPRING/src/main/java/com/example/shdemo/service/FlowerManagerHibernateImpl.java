@@ -121,8 +121,15 @@ public class FlowerManagerHibernateImpl implements FlowerManager {
     }
 
     @Override
+    public void deleteAllClients() {
+        sessionFactory.getCurrentSession().getNamedQuery("client.deleteAll").executeUpdate();
+    }
+
+    @Override
     public Long addPurchase(Purchase purchase) {
-        purchase.setId(null);
+        if(purchase.getClient() != null) {
+            purchase.getClient().getPurchases().add(purchase);
+        }
         return (Long) sessionFactory.getCurrentSession().save(purchase);
     }
 
@@ -142,6 +149,11 @@ public class FlowerManagerHibernateImpl implements FlowerManager {
     @Override
     public List<Purchase> getAllPurchases() {
         return sessionFactory.getCurrentSession().getNamedQuery("purchase.all").list();
+    }
+
+    @Override
+    public void deleteAllPurchases() {
+        sessionFactory.getCurrentSession().getNamedQuery("purchase.deleteAll").executeUpdate();
     }
 
     @Override

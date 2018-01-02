@@ -20,7 +20,8 @@ import javax.persistence.TemporalType;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "client.all", query = "Select c from Client c"),
-        @NamedQuery(name = "client.byPin", query = "Select c from Client c where c.pin = :pin")
+        @NamedQuery(name = "client.byPin", query = "Select c from Client c where c.pin = :pin"),
+        @NamedQuery(name = "client.deleteAll", query = "Delete from Client")
 })
 
 public class Client {

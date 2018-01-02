@@ -27,11 +27,13 @@ public interface FlowerManager {
     Client findClientById(Long id);
     Client findClientByPin(String pin);
     List<Client> getAllClients();
+    void deleteAllClients();
 
     Long addPurchase(Purchase client);
     void deletePurchase(Purchase purchase);
     Purchase findPurchaseById(Long id);
     List<Purchase> getAllPurchases();
+    void deleteAllPurchases();
 
 
 }
