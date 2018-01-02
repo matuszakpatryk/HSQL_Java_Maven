@@ -3,10 +3,10 @@ package com.example.shdemo.domain;
 import javax.persistence.*;
 import java.util.Date;
 
-/*@Entity
+@Entity
 @NamedQueries({
         @NamedQuery(name = "purchase.all", query = "Select p from Purchase p"),
-})*/
+})
 public class Purchase {
 
     public Long id;
@@ -33,6 +33,7 @@ public class Purchase {
         this.date = date;
     }
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Client getClient() {
         return client;
     }
@@ -41,6 +42,7 @@ public class Purchase {
         this.client = client;
     }
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Flower getFlower() {
         return flower;
     }

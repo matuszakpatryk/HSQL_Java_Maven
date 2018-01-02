@@ -25,6 +25,7 @@ public interface FlowerManager {
     void updateClient(Long id);
     void deleteClient(Client client);
     Client findClientById(Long id);
+    Client findClientByPin(String pin);
     List<Client> getAllClients();
 
     Long addPurchase(Purchase client);

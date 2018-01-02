@@ -144,4 +144,12 @@ public class FlowerManagerHibernateImpl implements FlowerManager {
         return sessionFactory.getCurrentSession().getNamedQuery("purchase.all").list();
     }
 
+    @Override
+    public Client findClientByPin(String pin) {
+        Client client = (Client) sessionFactory.getCurrentSession().getNamedQuery("client.byPin").setString("pin", pin).uniqueResult();
+        return client;
+
+    }
+
+
 }

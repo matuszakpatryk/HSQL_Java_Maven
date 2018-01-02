@@ -2,9 +2,14 @@ package com.example.shdemo.service;
 
 import static org.junit.Assert.assertEquals;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.example.shdemo.domain.Client;
+import com.example.shdemo.domain.Purchase;
 import com.example.shdemo.domain.Type;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,10 +65,10 @@ public class FlowerManagerTest {
         assertEquals(TYPE_NAME_1, typeRetrieved.getName());
         assertEquals(TYPE_DESCRIPTION_1, typeRetrieved.getDescription());
 
-        flowerManager.deleteType(typeRetrieved);
+        //flowerManager.deleteType(typeRetrieved);
     }
 
-    @Test
+    //@Test
     public void updateTypeCheck(){
         Type type = new Type();
         type.setName(TYPE_NAME_1);
@@ -92,10 +97,10 @@ public class FlowerManagerTest {
         assertEquals(CLIENT_NAME_1, clientRetrieved.getFirstName());
         assertEquals(CLIENT_PIN_1, clientRetrieved.getPin());
 
-        flowerManager.deleteClient(clientRetrieved);
+        //flowerManager.deleteClient(clientRetrieved);
     }
 
-    @Test
+    //@Test
     public void updateClientCheck(){
         Client client = new Client();
         client.setFirstName(CLIENT_NAME_1);
@@ -133,12 +138,13 @@ public class FlowerManagerTest {
         assertEquals(PRICE_1, retrievedFlower.getPriceNetto(), 5);
         assertEquals(type, retrievedFlower.getType());
         assertEquals(VAT_1, retrievedFlower.getVat());
+        assertEquals(NAME_1, type.getFlowers().get(0).getName());
         // ... check other properties here
 
-        flowerManager.deleteFlower(retrievedFlower);
+        //flowerManager.deleteFlower(retrievedFlower);
     }
 
-    @Test
+    //@Test
     public void updateFlowerCheck(){
         Long id = Long.valueOf(1);
         Type type = flowerManager.findTypeById(id);
@@ -162,5 +168,28 @@ public class FlowerManagerTest {
 
         //flowerManager.deleteFlower(retrievedFlower);
 
+    }
+
+    @Test
+    public void addPurchaseCheck(){
+        Long id = Long.valueOf(1);
+        Client clientRetrieved = flowerManager.findClientById(id);
+        Flower flowerRetrieved = flowerManager.findFlowerById(id);
+
+        Purchase purchase = new Purchase();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        purchase.setDate(date);
+        purchase.setClient(clientRetrieved);
+        purchase.setFlower(flowerRetrieved);
+
+        Long purchaseId = flowerManager.addPurchase(purchase);
+        clientRetrieved.getPurchases().add(purchase);
+
+        Purchase purchaseRetrieved = flowerManager.findPurchaseById(purchaseId);
+        assertEquals(date, purchaseRetrieved.getDate());
+        assertEquals(clientRetrieved, purchaseRetrieved.getClient());
+        assertEquals(flowerRetrieved, purchaseRetrieved.getFlower());
+        assertEquals(3, clientRetrieved.getPurchases().size());
     }
 }
